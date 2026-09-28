@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+
+        name="viewport"
+
+        content="width=device-width, initial-scale=1.0"
+
+    >
+
+    <meta
+
+        name="description"
+
+        content="ONE-AI — Une plateforme intelligente simple, rapide et moderne."
+
+    >
+
+    <meta name="theme-color" content="#0b0f19">
+
+    <title>ONE-AI</title>
+
+    <!-- Icône -->
+
+    <link
+
+        rel="icon"
+
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230b0f19'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-size='55' font-family='Arial' font-weight='bold' fill='white'%3EONE%3C/text%3E%3C/svg%3E"
+
+    >
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- ==================================================
+
+         LOADING
+
+    =================================================== -->
+
+    <div id="loadingScreen" class="screen loading-screen">
+
+        <div class="loading-logo">
+
+            ONE
+
+        </div>
+
+        <div class="loader"></div>
+
+        <p>Chargement de ONE...</p>
+
+    </div>
+
+    <!-- ==================================================
+
+         AUTHENTIFICATION
+
+    =================================================== -->
+
+    <main id="authScreen" class="screen auth-screen hidden">
+
+        <div class="auth-container">
+
+            <div class="logo">
+
+                ONE
+
+            </div>
+
+            <h1>Bienvenue sur ONE</h1>
+
+            <p class="subtitle">
+
+                Une nouvelle façon d'utiliser l'intelligence artificielle.
+
+            </p>
+
+            <!-- ===============================
+
+                 INSCRIPTION
+
+            ================================ -->
+
+            <section id="registerForm" class="auth-form hidden">
+
+                <h2>Créer un compte</h2>
+
+                <p>
+
+                    Rejoins ONE gratuitement.
+
+                </p>
+
+                <form id="signupForm">
+
+                    <div class="input-group">
+
+                        <label for="signupName">
+
+                            Nom
+
+                        </label>
+
+                        <input
+
+                            type="text"
+
+                            id="signupName"
+
+                            name="name"
+
+                            placeholder="Ton nom"
+
+                            autocomplete="name"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="signupEmail">
+
+                            Email
+
+                        </label>
+
+                        <input
+
+                            type="email"
+
+                            id="signupEmail"
+
+                            name="email"
+
+                            placeholder="ton@email.com"
+
+                            autocomplete="email"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="signupPassword">
+
+                            Mot de passe
+
+                        </label>
+
+                        <input
+
+                            type="password"
+
+                            id="signupPassword"
+
+                            name="password"
+
+                            placeholder="Minimum 6 caractères"
+
+                            autocomplete="new-password"
+
+                            minlength="6"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <button
+
+                        type="submit"
+
+                        class="primary-btn"
+
+                        id="signupButton"
+
+                    >
+
+                        Créer mon compte
+
+                    </button>
+
+                </form>
+
+                <p class="switch-auth">
+
+                    Tu as déjà un compte ?
+
+                    <button
+
+                        type="button"
+
+                        id="showLogin"
+
+                        class="link-btn"
+
+                    >
+
+                        Se connecter
+
+                    </button>
+
+                </p>
+
+            </section>
+
+            <!-- ===============================
+
+                 CONNEXION
+
+            ================================ -->
+
+            <section id="loginForm" class="auth-form">
+
+                <h2>Connexion</h2>
+
+                <p>
+
+                    Connecte-toi à ton compte ONE.
+
+                </p>
+
+                <form id="signinForm">
+
+                    <div class="input-group">
+
+                        <label for="loginEmail">
+
+                            Email
+
+                        </label>
+
+                        <input
+
+                            type="email"
+
+                            id="loginEmail"
+
+                            name="email"
+
+                            placeholder="ton@email.com"
+
+                            autocomplete="email"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="loginPassword">
+
+                            Mot de passe
+
+                        </label>
+
+                        <input
+
+                            type="password"
+
+                            id="loginPassword"
+
+                            name="password"
+
+                            placeholder="Ton mot de passe"
+
+                            autocomplete="current-password"
+
+                            required
+
+                        >
+
+                    </div>
+
+                    <button
+
+                        type="submit"
+
+                        class="primary-btn"
+
+                        id="loginButton"
+
+                    >
+
+                        Se connecter
+
+                    </button>
+
+                </form>
+
+                <p class="switch-auth">
+
+                    Pas encore de compte ?
+
+                    <button
+
+                        type="button"
+
+                        id="showRegister"
+
+                        class="link-btn"
+
+                    >
+
+                        Créer un compte
+
+                    </button>
+
+                </p>
+
+            </section>
+
+            <!-- Message d'erreur/succès -->
+
+            <div
+
+                id="authMessage"
+
+                class="message hidden"
+
+                role="alert"
+
+            ></div>
+
+        </div>
+
+    </main>
+
+    <!-- ==================================================
+
+         APPLICATION ONE
+
+    =================================================== -->
+
+    <main id="appScreen" class="app-screen hidden">
+
+        <!-- ===============================
+
+             HEADER
+
+        ================================ -->
+
+        <header class="app-header">
+
+            <div class="brand">
+
+                <span class="brand-logo">
+
+                    ONE
+
+                </span>
+
+                <span class="brand-name">
+
+                    ONE-AI
+
+                </span>
+
+            </div>
+
+            <div class="header-actions">
+
+                <button
+
+                    type="button"
+
+                    id="logoutButton"
+
+                    class="logout-btn"
+
+                >
+
+                    Déconnexion
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- ===============================
+
+             SIDEBAR
+
+        ================================ -->
+
+        <aside class="sidebar">
+
+            <button
+
+                type="button"
+
+                class="nav-item active"
+
+                data-section="home"
+
+            >
+
+                🏠
+
+                <span>Accueil</span>
+
+            </button>
+
+            <button
+
+                type="button"
+
+                class="nav-item"
+
+                data-section="ai"
+
+            >
+
+                ✨
+
+                <span>ONE AI</span>
+
+            </button>
+
+            <button
+
+                type="button"
+
+                class="nav-item"
+
+                data-section="profile"
+
+            >
+
+                👤
+
+                <span>Profil</span>
+
+            </button>
+
+        </aside>
+
+        <!-- ===============================
+
+             CONTENU
+
+        ================================ -->
+
+        <section class="main-content">
+
+            <!-- ============================
+
+                 ACCUEIL
+
+            ============================= -->
+
+            <section
+
+                id="homeSection"
+
+                class="content-section active"
+
+            >
+
+                <div class="welcome-card">
+
+                    <span class="eyebrow">
+
+                        ONE-AI
+
+                    </span>
+
+                    <h1>
+
+                        Bienvenue
+
+                        <span id="userName">
+
+                            👋
+
+                        </span>
+
+                    </h1>
+
+                    <p>
+
+                        Ton espace intelligent est prêt.
+
+                    </p>
+
+                    <button
+
+                        type="button"
+
+                        class="primary-btn"
+
+                        id="startAiButton"
+
+                    >
+
+                        Commencer avec ONE AI
+
+                    </button>
+
+                </div>
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🤖
+
+                        </div>
+
+                        <h3>
+
+                            Intelligence artificielle
+
+                        </h3>
+
+                        <p>
+
+                            Discute avec ONE et obtiens
+
+                            des réponses intelligentes.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+
+                            ⚡
+
+                        </div>
+
+                        <h3>
+
+                            Rapide
+
+                        </h3>
+
+                        <p>
+
+                            Une interface pensée pour
+
+                            être simple et rapide.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+
+                            🔐
+
+                        </div>
+
+                        <h3>
+
+                            Ton compte
+
+                        </h3>
+
+                        <p>
+
+                            Tes informations sont liées
+
+                            à ton compte utilisateur.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- ============================
+
+                 ONE AI
+
+            ============================= -->
+
+            <section
+
+                id="aiSection"
+
+                class="content-section"
+
+            >
+
+                <div class="ai-header">
+
+                    <span class="eyebrow">
+
+                        ONE AI
+
+                    </span>
+
+                    <h1>
+
+                        Comment puis-je t'aider ?
+
+                    </h1>
+
+                    <p>
+
+                        Pose ta question à ONE.
+
+                    </p>
+
+                </div>
+
+                <div
+
+                    id="chatMessages"
+
+                    class="chat-messages"
+
+                >
+
+                    <div class="ai-message">
+
+                        <div class="message-avatar">
+
+                            ONE
+
+                        </div>
+
+                        <div class="message-content">
+
+                            <strong>
+
+                                ONE
+
+                            </strong>
+
+                            <p>
+
+                                Salut 👋 Je suis ONE.
+
+                                Que veux-tu faire aujourd'hui ?
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ============================
+
+                     CHAT INPUT
+
+                ============================= -->
+
+                <form
+
+                    id="aiForm"
+
+                    class="chat-form"
+
+                >
+
+                    <textarea
+
+                        id="aiInput"
+
+                        placeholder="Écris ton message..."
+
+                        rows="1"
+
+                        maxlength="5000"
+
+                        required
+
+                    ></textarea>
+
+                    <button
+
+                        type="submit"
+
+                        id="sendAiButton"
+
+                        class="send-btn"
+
+                        aria-label="Envoyer"
+
+                    >
+
+                        ➤
+
+                    </button>
+
+                </form>
+
+                <p class="ai-disclaimer">
+
+                    ONE peut faire des erreurs. Vérifie les
+
+                    informations importantes.
+
+                </p>
+
+            </section>
+
+            <!-- ============================
+
+                 PROFIL
+
+            ============================= -->
+
+            <section
+
+                id="profileSection"
+
+                class="content-section"
+
+            >
+
+                <div class="profile-card">
+
+                    <div class="profile-avatar">
+
+                        <span id="profileInitial">
+
+                            U
+
+                        </span>
+
+                    </div>
+
+                    <h1 id="profileName">
+
+                        Utilisateur
+
+                    </h1>
+
+                    <p id="profileEmail">
+
+                        email@example.com
+
+                    </p>
+
+                    <div class="profile-info">
+
+                        <div class="profile-row">
+
+                            <span>
+
+                                Nom
+
+                            </span>
+
+                            <strong id="profileNameValue">
+
+                                —
+
+                            </strong>
+
+                        </div>
+
+                        <div class="profile-row">
+
+                            <span>
+
+                                Email
+
+                            </span>
+
+                            <strong id="profileEmailValue">
+
+                                —
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <button
+
+                        type="button"
+
+                        id="profileLogoutButton"
+
+                        class="danger-btn"
+
+                    >
+
+                        Se déconnecter
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- ==================================================
+
+         NOTIFICATION
+
+    =================================================== -->
+
+    <div
+
+        id="notification"
+
+        class="notification hidden"
+
+        role="status"
+
+        aria-live="polite"
+
+    >
+
+        <span id="notificationText"></span>
+
+    </div>
+
+    <!-- ==================================================
+
+         JAVASCRIPT
+
+    =================================================== -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
